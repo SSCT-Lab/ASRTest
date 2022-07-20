@@ -5,9 +5,8 @@ set -e
 set -u
 set -o pipefail
 
-test_sets="test-noise"
-test_model="retrain-gini"
-orgi_flag=false
+test_sets="test-room"
+orig_flag=false
 need_decode=true
 selected_num=130
 stage=1
@@ -19,7 +18,7 @@ dataset="an4"
     --use_lm false \
     --test_sets ${test_sets} \
     --local_data_opts ${test_sets}\
-    --orgi_flag ${orgi_flag} \
+    --orig_flag ${orig_flag} \
     --need_decode ${need_decode} \
     --stage ${stage} \
     --stop_stage ${stop_stage} \
