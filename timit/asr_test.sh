@@ -120,7 +120,7 @@ asr_text_fold_length=150   # fold_length for text data during ASR training.
 lm_fold_length=150         # fold_length for LM training.
 
 # gini_related
-orgi_flag=
+orig_flag=
 need_decode=
 selected_num=
 dataset=
@@ -224,7 +224,7 @@ Options:
 EOF
 )
 
-log "asr_test $0 $*"
+# log "asr_test $0 $*"
 # Save command line args for logging (they will be lost after utils/parse_options.sh)
 run_args=$(pyscripts/utils/print_args.py $0 "$@")
 . utils/parse_options.sh
@@ -501,7 +501,7 @@ if [ -n "${download_model}" ]; then
     mkdir -p "${asr_exp}"
    
     # If the model already exists, you can skip downloading
-#     espnet_model_zoo_download --unpack true "${download_model}" > "${asr_exp}/config.txt"
+    espnet_model_zoo_download --unpack true "${download_model}" > "${asr_exp}/config.txt"
 
     # Get the path of each file
     _asr_model_file=$(<"${asr_exp}/config.txt" sed -e "s/.*'asr_model_file': '\([^']*\)'.*$/\1/")
@@ -571,8 +571,8 @@ if ! "${skip_eval}"; then
                         --key_file "${_logdir}"/keys.JOB.scp \
                         --asr_train_config "${asr_exp}"/config.yaml \
                         --asr_model_file "${asr_exp}"/"${inference_asr_model}" \
-                        --orgi_dir "${asr_exp}/${inference_tag}" \
-                        --orgi_flag "${orgi_flag}" \
+                        --orig_dir "${asr_exp}/${inference_tag}" \
+                        --orig_flag "${orig_flag}" \
                         --need_decode "${need_decode}" \
                         --output_dir "${_logdir}"/output.JOB \
                         --selected_num ${selected_num} \
@@ -608,13 +608,12 @@ if ! "${skip_eval}"; then
                         --asr_train_config "${asr_exp}"/config.yaml \
                         --asr_model_file "${asr_exp}"/"${inference_asr_model}" \
                         --output_dir "${_logdir}"/output.JOB \
-                        --orgi_dir "${asr_exp}/${inference_tag}" \
-                        --orgi_flag "${orgi_flag}" \
+                        --orig_dir "${asr_exp}/${inference_tag}" \
+                        --orig_flag "${orig_flag}" \
                         --need_decode "${need_decode}" \
                         ${_opts} ${inference_args}
                 # 3. Concatenates the output files from each jobs
-#                 _nj=32
-                for f in token token_int score text sum_gini token_gini cov act_cell ; do
+                for f in token token_int score text sum_gini token_gini cov ; do
                     for i in $(seq "${_nj}"); do
                         cat "${_logdir}/output.${i}/1best_recog/${f}"
                     done | LC_ALL=C sort -k1 >"${_dir}/${f}"
