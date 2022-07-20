@@ -59,7 +59,7 @@ for set in ${recog_set}; do
   cat $dir/utt2spk | utils/utt2spk_to_spk2utt.pl > $dir/spk2utt
 
   # Prepare 'wav.scp', 'reco2file_and_channel'
-  if [ $set == "test-orgi" ]; then
+  if [ $set == "test-orig" ]; then
       cat $dir/spk2utt | awk -v data_type=$data_type -v set=$set -v pwd=$PWD '{ printf("%s '$sph2pipe' -f wav -p %s/db/TEDLIUM_release-3/%s/%s/sph/%s.sph |\n", $1, pwd, data_type, set, $1); }' > $dir/wav.scp
   else
       cat $dir/spk2utt | awk -v data_type=$data_type -v set=$set -v pwd=$PWD '{ printf("%s %s/db/TEDLIUM_release-3/%s/%s/wav/%s.wav\n", $1, pwd, data_type, set, $1); }' > $dir/wav.scp
