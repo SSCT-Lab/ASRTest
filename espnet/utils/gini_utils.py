@@ -322,7 +322,7 @@ def parse_hypothesis(hyp, char_list, gini_list):
     return text, token, tokenid, score, ginilist
 
 
-def add_results_to_json(js, nbest_hyps, char_list, sum_gini, gini_list, cov):
+def add_results_to_json(js, nbest_hyps, char_list, sum_gini, gini_list):
     """Add N-best results to json.
     Args:
         js (dict[str, Any]): Groundtruth utterance dict.
@@ -358,7 +358,6 @@ def add_results_to_json(js, nbest_hyps, char_list, sum_gini, gini_list, cov):
         out_dic["score"] = score
         out_dic["sum_gini"] = sum_gini
         out_dic["gini_list"] = gini_list
-        out_dic["cov"] = cov
 
         # add to list of N-best result dicts
         new_js["output"].append(out_dic)
