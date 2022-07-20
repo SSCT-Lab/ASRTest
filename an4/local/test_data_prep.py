@@ -1,20 +1,5 @@
 #!/usr/bin/env python3
 
-# Copyright 2016  Allen Guo
-
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#  http://www.apache.org/licenses/LICENSE-2.0
-#
-# THIS CODE IS PROVIDED *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-# KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-# WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-# MERCHANTABLITY OR NON-INFRINGEMENT.
-# See the Apache 2 License for the specific language governing permissions and
-# limitations under the License.
-
 import os
 import re
 import sys
@@ -51,9 +36,8 @@ for x in ["test"]:
             source = re.search(r"\((.*)\)", line).group(1)
             pre, mid, last = source.split("-")
             utt_id = "-".join([mid, pre, last])
-
             text_f.write(utt_id + " " + words + "\n")
-            if "train-orgi" in test_set:
+            if "test-orgi" in test_set:
                 wav_scp_f.write(
                     utt_id
                     + " "
@@ -62,7 +46,7 @@ for x in ["test"]:
                     + os.path.join(an4_root, "wav", wav_dir[x], mid, source + ".sph")
                     + " |\n"
                 )
-            if "dev-orgi" in test_set:
+            elif ("dev-orig" in test_set) | ("train-orig" in test_set):
                 wav_scp_f.write(
                     utt_id
                     + " "
@@ -77,3 +61,4 @@ for x in ["test"]:
                     + "\n"
                 )
             utt2spk_f.write(utt_id + " " + mid + "\n")
+
