@@ -10,9 +10,9 @@ test_sets="test-feature"
 model_name="kamo-naoyuki/timit_asr_train_asr_raw_word_valid.acc.ave"
 asr_exp="exp/${model_name}"
 selected_num=192
-orgi_flag=false
-need_decode=false
-stage=4
+orig_flag=false
+need_decode=true
+stage=1
 stop_stage=4
 train_flag=false
 dataset="TIMIT"
@@ -41,10 +41,9 @@ inference_config=conf/decode_asr.yaml
     --inference_config "${inference_config}" \
     --local_data_opts "--trans_type ${trans_type} --train_flag ${train_flag} --test_sets ${test_sets}" \
     --selected_num ${selected_num} \
-    --orgi_flag ${orgi_flag} \
+    --orig_flag ${orig_flag} \
     --need_decode ${need_decode} \
     --stage ${stage} \
     --stop_stage ${stop_stage} \
     --asr_exp ${asr_exp} \
-    --dataset ${dataset} \
-    --download_model "${model_name}" 
+    --dataset ${dataset} 
