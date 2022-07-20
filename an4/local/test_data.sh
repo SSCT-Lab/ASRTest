@@ -43,10 +43,6 @@ if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
     log "stage 2: Data preparation"
     mkdir -p data/${test_set}
 
-#     if [ ! -f ${an4_root}/README ]; then
-#         echo Cannot find an4 root! Exiting...
-#         exit 1
-#     fi
     if [[ ${test_set} =~ "130" ]]
     then 
         log "Do nut use preparing data"
@@ -63,3 +59,4 @@ if [ ${stage} -le 2 ] && [ ${stop_stage} -ge 2 ]; then
 fi
 
 log "Successfully finished. [elapsed=${SECONDS}s]"
+
