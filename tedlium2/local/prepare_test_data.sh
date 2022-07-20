@@ -83,3 +83,4 @@ for set in ${recog_set}; do
   utils/validate_data_dir.sh --no-feats $dir || exit 1
 done
 
+
