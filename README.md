@@ -27,8 +27,8 @@ We experiment ASRTest with the ASR toolkit ESPnet: (https://github.com/espnet/es
 - For egs2：
   - cd egs2/xxx/asr1/
   - ln -s ../../TEMPLATE/asr1/asr_test.sh ./asr_test.sh 
-  - decode the origial test set: sh test.sh --test_sets "test-orig" --need_decode true --orig_flag true --dataset "xxx" --stage 1 --stop_stage 4 ### 
-  - decode the all transformed test set: sh test.sh --test_sets "xxxx" --need_decode true --orig_flag false --dataset "xxx" --stage 1 --stop_stage 4 ### 
+  - decode the origial test set: sh test.sh --test_sets "test-orig" --need_decode true --orig_flag true --dataset "xxx" --stage 1 --stop_stage 4 
+  - decode the all transformed test set: sh test.sh --test_sets "xxxx" --need_decode true --orig_flag false --dataset "xxx" --stage 1 --stop_stage 4 
   - obtain the result on the test set transformed by ASRTest: sh test.sh --test_sets "xxxx" --need_decode false --orig_flag false --dataset "xxx" --stage 3 --stop_stage 4 
 - For egs：
   - cd egs/xxx/asr1/
